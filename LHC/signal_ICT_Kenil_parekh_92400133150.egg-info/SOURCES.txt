@@ -1,3 +1,4 @@
+README.md
 setup.py
 signal_ICT_Kenil_parekh_92400133150/__init__.py
 signal_ICT_Kenil_parekh_92400133150/operations.py
