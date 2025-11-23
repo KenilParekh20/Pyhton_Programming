@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form method="get">
+    <input name="q" placeholder="Search by name, category, description" value="{{ q }}">
+    <button type="submit">Search</button>
+  </form>
+  <h2>Documents</h2>
+  {% if docs|length == 0 %}
+    <p>No documents yet.</p>
+  {% else %}
+    <table>
+      <thead>
+        <tr><th>File</th><th>Category</th><th>Description</th><th>Uploaded At</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        {% for d in docs %}
+          <tr>
+            <td>{{ d.filename }}</td>
+            <td>{{ d.category }}</td>
+            <td>{{ d.description }}</td>
+            <td>{{ d.uploaded_at }}</td>
+            <td>
+              <a href="/uploads/{{ d.stored_filename }}">Download</a>
+              <form method="post" action="/delete/{{ d.id }}" style="display:inline">
+                <button type="submit">Delete</button>
+              </form>
+              <td>
+               <a href="/uploads/{{ d.stored_filename }}">Download</a>
+               {% if d.drive_file_id %}
+               <a href="https://drive.google.com/file/d/{{ d.drive_file_id }}/view" target="_blank">Open in Drive</a>
+               {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pocket Document Hub</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Pocket Document Hub</h1>
+      <nav><a href="/">Home</a> | <a href="/upload">Upload</a></nav>
+    </header>
+    <main>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for msg in messages %}
+              <li>{{ msg }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
